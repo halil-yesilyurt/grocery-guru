@@ -89,11 +89,11 @@ header h1 {
   cursor: pointer;
 }
 .btn-clear {
-  width: 50%;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 600;
   background-color: transparent;
   color: #333;
-  border: 1px solid #ccc;
+  border: 1px solid #333;
   border-radius: 5px;
   padding: 1rem 2rem;
   cursor: pointer;
@@ -103,4 +103,27 @@ header h1 {
 }
 .btn-clear:hover {
   background-color: #dad7cd;
+}
+.items {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 2rem;
+  column-gap: 1rem;
+  justify-content: center;
+}
+.items li {
+  display: flex;
+  justify-content: space-between;
+  width: 44%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 1rem 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+@media only screen and (max-width: 600px) {
+  .items li {
+    width: 100%;
+  }
 }
