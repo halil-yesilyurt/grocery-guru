@@ -7,8 +7,11 @@
   padding: 0;
   box-sizing: border-box;
 }
-body {
+html {
   font-size: 62.5%;
+}
+body {
+  font-size: 1.6rem;
   line-height: 1.4;
   color: #006d77;
   background: #edf6f9;
@@ -31,5 +34,73 @@ header img {
   width: 70px;
 }
 header h1 {
-  font-size: 2.6rem;
+  font-size: 3rem;
+}
+.edit {
+  color: #ccc;
+}
+.form-item {
+  display: flex;
+  flex-direction: column;
+}
+.item-input {
+  width: 100%;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+.btn {
+  background-color: #40a77b;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  padding: 1rem 1.3rem;
+  cursor: pointer;
+  font-size: 1.4rem;
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+  align-self: flex-end;
+  transition: 150ms background-color;
+}
+.btn:hover {
+  background-color: #2b7757;
+}
+.item-filter {
+  margin: 1.2rem 0;
+  width: 100%;
+  font-size: 1.8rem;
+  padding: 1rem;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background: transparent;
+  outline: none;
+}
+.delete-item {
+  font-size: 1.4rem;
+  background-color: transparent;
+  color: #d62828;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.btn-clear {
+  width: 50%;
+  font-size: 1.5rem;
+  background-color: transparent;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  margin: 2rem auto 0;
+  display: block;
+  transition: 200ms background-color;
+}
+.btn-clear:hover {
+  background-color: #dad7cd;
 }
