@@ -21,6 +21,13 @@ function addItem(e) {
 }
 
 // Create button
-function createButton(classes) {}
+function createButton(classes) {
+  const button = document.createElement('button');
+  const icon = document.createElement('i');
+  button.className = classes;
+  icon.className = 'fa-solid fa-xmark';
+  button.appendChild(icon);
+  return button;
+}
 
 formItem.addEventListener('submit', addItem);
