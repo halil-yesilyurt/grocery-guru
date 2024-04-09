@@ -17,7 +17,7 @@ function addItem(e) {
 
   const button = createButton('delete-item btn-item');
   li.appendChild(button);
-  
+
   itemList.appendChild(li);
 
   inputItem.value = '';
@@ -39,4 +39,13 @@ function createIcon(classes) {
   return icon;
 }
 
+// Remove items
+function removeItem(e) {
+  const parentEl = e.target.parentElement;
+  if (parentEl.classList.contains('delete-item')) {
+    parentEl.parentElement.remove();
+  }
+}
+
 formItem.addEventListener('submit', addItem);
+itemList.addEventListener('click', removeItem);
