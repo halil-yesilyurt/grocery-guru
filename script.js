@@ -14,20 +14,29 @@ function addItem(e) {
   // Create list element
   const li = document.createElement('li');
   li.appendChild(document.createTextNode(itemValue));
+
   const button = createButton('delete-item btn-item');
   li.appendChild(button);
+  
   itemList.appendChild(li);
+
   inputItem.value = '';
 }
 
 // Create button
 function createButton(classes) {
   const button = document.createElement('button');
-  const icon = document.createElement('i');
   button.className = classes;
-  icon.className = 'fa-solid fa-xmark';
+  const icon = createIcon('fa-solid fa-xmark');
   button.appendChild(icon);
   return button;
+}
+
+// Create icon
+function createIcon(classes) {
+  const icon = document.createElement('icon');
+  icon.className = classes;
+  return icon;
 }
 
 formItem.addEventListener('submit', addItem);
