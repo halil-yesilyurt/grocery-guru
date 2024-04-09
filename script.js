@@ -22,8 +22,9 @@ function addItem(e) {
 
   itemList.appendChild(li);
 
-  inputItem.value = '';
   controlPage();
+
+  inputItem.value = '';
 }
 
 // Create button
@@ -45,10 +46,10 @@ function createIcon(classes) {
 // Remove items
 function removeItem(e) {
   const parentEl = e.target.parentElement;
-  if (parentEl.classList.contains('delete-item')) {
+  if (parentEl.classList.contains('delete-item') && confirm('Do you want to delete this item?')) {
     parentEl.parentElement.remove();
+    controlPage();
   }
-  controlPage();
 }
 
 // Clear all items
@@ -56,9 +57,10 @@ function clearAll() {
   while (itemList.firstChild) {
     itemList.removeChild(itemList.firstChild);
   }
+  controlPage();
 }
 
-// Check
+// Check page
 function controlPage() {
   const items = itemList.querySelectorAll('li');
 
@@ -74,3 +76,4 @@ function controlPage() {
 formItem.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem);
 clearBtn.addEventListener('click', clearAll);
+controlPage();
