@@ -2,6 +2,7 @@ const formItem = document.querySelector('.form-item');
 const inputItem = document.querySelector('.item-input');
 const itemList = document.getElementById('item-list');
 const clearBtn = document.querySelector('.btn-clear');
+const filter = document.querySelector('.filter');
 
 function addItem(e) {
   e.preventDefault();
@@ -22,6 +23,7 @@ function addItem(e) {
   itemList.appendChild(li);
 
   inputItem.value = '';
+  controlPage();
 }
 
 // Create button
@@ -46,12 +48,26 @@ function removeItem(e) {
   if (parentEl.classList.contains('delete-item')) {
     parentEl.parentElement.remove();
   }
+  controlPage();
 }
 
 // Clear all items
 function clearAll() {
   while (itemList.firstChild) {
     itemList.removeChild(itemList.firstChild);
+  }
+}
+
+// Check
+function controlPage() {
+  const items = itemList.querySelectorAll('li');
+
+  if (items.length === 0) {
+    clearBtn.style.display = 'none';
+    filter.style.display = 'none';
+  } else {
+    clearBtn.style.display = 'block';
+    filter.style.display = 'block';
   }
 }
 
