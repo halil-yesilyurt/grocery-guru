@@ -73,7 +73,19 @@ function controlPage() {
   }
 }
 
+// Filter items
+function filterItems(e) {
+  const text = e.target.value.toLowerCase();
+  const items = itemList.querySelectorAll('li');
+
+  items.forEach((item) => {
+    const itemEl = item.firstChild.textContent.toLowerCase();
+    item.style.display = `${itemEl.indexOf(text) !== -1 ? 'flex' : 'none'}`;
+  });
+}
+
 formItem.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem);
 clearBtn.addEventListener('click', clearAll);
+filter.addEventListener('input', filterItems);
 controlPage();
