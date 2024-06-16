@@ -12,8 +12,8 @@ function addItem(e) {
     alert('Please enter an item');
     return;
   }
-
   addItemToDom(itemValue);
+  addItemToStorage(itemValue);
   controlPage();
 
   inputItem.value = '';
@@ -23,12 +23,28 @@ function addItem(e) {
 function addItemToDom(item) {
   // Create list element
   const li = document.createElement('li');
-  li.appendChild(document.createTextNode(itemValue));
+  li.appendChild(document.createTextNode(item));
 
   const button = createButton('delete-item btn-item');
   li.appendChild(button);
 
   itemList.appendChild(li);
+}
+
+// Add items to local storage
+function addItemToStorage(item) {
+  let storageItem;
+
+  if (localStorage.getItem('items') === null) {
+    storageItem = [];
+  } else {
+    storageItem = JSON.parse(localStorage.getItem('items'));
+  }
+
+  storageItem.push(item);
+
+  // convert to string and set to local storage
+  localStorage.setItem('items', JSON.stringify(storageItem));
 }
 
 // Create button
@@ -93,4 +109,3 @@ itemList.addEventListener('click', removeItem);
 clearBtn.addEventListener('click', clearAll);
 filter.addEventListener('input', filterItems);
 controlPage();
-
