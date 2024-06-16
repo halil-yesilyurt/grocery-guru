@@ -13,6 +13,14 @@ function addItem(e) {
     return;
   }
 
+  addItemToDom(itemValue);
+  controlPage();
+
+  inputItem.value = '';
+}
+
+// Add items to DOM
+function addItemToDom(item) {
   // Create list element
   const li = document.createElement('li');
   li.appendChild(document.createTextNode(itemValue));
@@ -21,10 +29,6 @@ function addItem(e) {
   li.appendChild(button);
 
   itemList.appendChild(li);
-
-  controlPage();
-
-  inputItem.value = '';
 }
 
 // Create button
@@ -89,3 +93,4 @@ itemList.addEventListener('click', removeItem);
 clearBtn.addEventListener('click', clearAll);
 filter.addEventListener('input', filterItems);
 controlPage();
+
