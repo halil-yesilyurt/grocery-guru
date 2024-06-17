@@ -33,6 +33,16 @@ function addItemToDom(item) {
 
 // Add items to local storage
 function addItemToStorage(item) {
+  const storageItem = getItemFromStorage(item);
+
+  storageItem.push(item);
+
+  // convert to string and set to local storage
+  localStorage.setItem('items', JSON.stringify(storageItem));
+}
+
+// Get items from local storage
+function getItemFromStorage() {
   let storageItem;
 
   if (localStorage.getItem('items') === null) {
@@ -41,10 +51,7 @@ function addItemToStorage(item) {
     storageItem = JSON.parse(localStorage.getItem('items'));
   }
 
-  storageItem.push(item);
-
-  // convert to string and set to local storage
-  localStorage.setItem('items', JSON.stringify(storageItem));
+  return storageItem;
 }
 
 // Create button
