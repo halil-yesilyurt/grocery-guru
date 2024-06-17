@@ -19,6 +19,15 @@ function addItem(e) {
   inputItem.value = '';
 }
 
+// Display local storage items
+function displayItems() {
+  const storageItem = getItemFromStorage();
+  storageItem.forEach((item) => {
+    addItemToDom(item);
+  });
+  controlPage();
+}
+
 // Add items to DOM
 function addItemToDom(item) {
   // Create list element
@@ -115,4 +124,6 @@ formItem.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem);
 clearBtn.addEventListener('click', clearAll);
 filter.addEventListener('input', filterItems);
+document.addEventListener('DOMContentLoaded', displayItems);
+
 controlPage();
