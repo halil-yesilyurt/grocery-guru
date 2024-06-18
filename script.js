@@ -79,13 +79,30 @@ function createIcon(classes) {
   return icon;
 }
 
-// Remove items
-function removeItem(e) {
+function onClickItem(e) {
   const parentEl = e.target.parentElement;
-  if (parentEl.classList.contains('delete-item') && confirm('Do you want to delete this item?')) {
-    parentEl.parentElement.remove();
+  if (parentEl.classList.contains('delete-item')) {
+    removeItem(parentEl.parentElement);
+  }
+}
+
+// Remove items
+function removeItem(item) {
+  if (confirm('Do you want to delete this item?')) {
+    item.remove();
+
+    removeItemFromStorage(item.textContent);
+
     controlPage();
   }
+}
+
+// Remove items from local storage
+function removeItemFromStorage(item) {
+  let storageItem = getItemFromStorage();
+  storageItem = storageItem.filter((i) => i !== item);
+
+  localStorage.setItem('items', JSON.stringify(storageItem));
 }
 
 // Clear all items
@@ -121,7 +138,7 @@ function filterItems(e) {
 }
 
 formItem.addEventListener('submit', addItem);
-itemList.addEventListener('click', removeItem);
+itemList.addEventListener('click', onClickItem);
 clearBtn.addEventListener('click', clearAll);
 filter.addEventListener('input', filterItems);
 document.addEventListener('DOMContentLoaded', displayItems);
