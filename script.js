@@ -23,6 +23,11 @@ function addItem(e) {
     itemEdit.classList.remove('edit');
     itemEdit.remove();
     isEdit = false;
+  } else {
+    if (itemExists(itemValue)) {
+      alert('Item is already exists!');
+      return;
+    }
   }
 
   addItemToDom(itemValue);
@@ -114,7 +119,6 @@ function setItemToEdit(item) {
 
   formBtn.innerHTML = '<i class="fa-solid fa-pen"></i> Update Item';
   formBtn.classList.add('edit');
-
 }
 
 // Remove items
@@ -144,6 +148,12 @@ function clearAll() {
   // localStorage.clear()
   localStorage.removeItem('items');
   controlPage();
+}
+
+// Check if an item exists
+function itemExists(item) {
+  const storageItem = getItemFromStorage();
+  return storageItem.includes(item);
 }
 
 // Check page
