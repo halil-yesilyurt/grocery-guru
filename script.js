@@ -3,6 +3,8 @@ const inputItem = document.querySelector('.item-input');
 const itemList = document.getElementById('item-list');
 const clearBtn = document.querySelector('.btn-clear');
 const filter = document.querySelector('.filter');
+const formBtn = formItem.querySelector('.btn');
+let isEdit = false;
 
 function addItem(e) {
   e.preventDefault();
@@ -79,11 +81,30 @@ function createIcon(classes) {
   return icon;
 }
 
+// Element handler
 function onClickItem(e) {
   const parentEl = e.target.parentElement;
   if (parentEl.classList.contains('delete-item')) {
     removeItem(parentEl.parentElement);
+  } else {
+    setItemToEdit(e.target);
   }
+}
+
+function setItemToEdit(item) {
+  isEdit = true;
+
+  // Bring item into input
+  inputItem.value = item.textContent;
+
+  // Remove edit mode from rest of the items
+  itemList.querySelectorAll('li').forEach((item) => item.classList.remove('edit'));
+  item.classList.add('edit');
+
+  formBtn.innerHTML = '<i class="fa-solid fa-pen"></i> Update Item';
+  formBtn.classList.add('edit');
+
+  controlPage();
 }
 
 // Remove items
@@ -110,6 +131,8 @@ function clearAll() {
   while (itemList.firstChild) {
     itemList.removeChild(itemList.firstChild);
   }
+  // localStorage.clear()
+  localStorage.removeItem('items');
   controlPage();
 }
 
