@@ -14,6 +14,17 @@ function addItem(e) {
     alert('Please enter an item');
     return;
   }
+
+  // check if edit mode
+  if (isEdit) {
+    const itemEdit = itemList.querySelector('.edit');
+
+    removeItemFromStorage(itemEdit.textContent);
+    itemEdit.classList.remove('edit');
+    itemEdit.remove();
+    isEdit = false;
+  }
+
   addItemToDom(itemValue);
   addItemToStorage(itemValue);
   controlPage();
@@ -104,7 +115,6 @@ function setItemToEdit(item) {
   formBtn.innerHTML = '<i class="fa-solid fa-pen"></i> Update Item';
   formBtn.classList.add('edit');
 
-  controlPage();
 }
 
 // Remove items
@@ -138,6 +148,8 @@ function clearAll() {
 
 // Check page
 function controlPage() {
+  inputItem.value = '';
+
   const items = itemList.querySelectorAll('li');
 
   if (items.length === 0) {
@@ -147,6 +159,10 @@ function controlPage() {
     clearBtn.style.display = 'block';
     filter.style.display = 'block';
   }
+
+  formBtn.innerHTML = '<i class="fa-solid fa-plus"></i> Add Item';
+  formBtn.classList.remove('edit');
+  isEdit = false;
 }
 
 // Filter items
